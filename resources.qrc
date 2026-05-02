@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/chimes.wav</file>
+        <file>assets/tomato.png</file>
+    </qresource>
+</RCC>

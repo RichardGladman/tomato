@@ -10,6 +10,7 @@ qt_add_executable(tomato
     main.cpp
     mainwindow.cpp
     mainwindow.h
+    resources.qrc
 )
 
 target_link_libraries(tomato
