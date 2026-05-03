@@ -17,5 +17,11 @@ public:
 private:
 	QSoundEffect alarmSound;
 	QTimer *timer;
+	
+	int *working;
+	int *resting;
+	
+	void showSettingsDialog();
+	void loadSettings();
 };
 #endif // MAINWINDOW_H

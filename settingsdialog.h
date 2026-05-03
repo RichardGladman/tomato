@@ -2,6 +2,7 @@
 #define SETTINGSDIALOG_H
 
 #include <QDialog>
+#include <QSpinBox>
 
 namespace Ui {
 class SettingsDialog;
@@ -11,11 +12,20 @@ class SettingsDialog : public QDialog {
 	Q_OBJECT
 
 public:
-	explicit SettingsDialog(QWidget *parent = nullptr);
+	explicit SettingsDialog(int *working, int *resting, QWidget *parent = nullptr);
 	~SettingsDialog();
 
 private:
 	Ui::SettingsDialog *ui;
+	
+	QSpinBox *restingMinutes;
+	QSpinBox *workingMinutes;
+	
+	int *working;
+	int *resting;
+	
+	void acceptDialog();
+	void saveSettings();
 };
 
 #endif // SETTINGSDIALOG_H
