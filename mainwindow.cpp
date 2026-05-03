@@ -15,7 +15,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
-	alarmSound.setSource(QUrl::fromLocalFile("chimes.wav"));
+	alarmSound.setSource(QUrl::fromLocalFile(":/assets/chimes.wav"));
 
 	setWindowTitle("Tomato");
 	resize(400, 180);
@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 	QHBoxLayout *mainLayout = new QHBoxLayout(centralWidget);
 	QVBoxLayout *rightLayout = new QVBoxLayout(centralWidget);
 	
-	QPixmap pixmap = QPixmap("tomato.png");
+	QPixmap pixmap = QPixmap(":/assets/tomato.png");
 	//Q_ASSERT(!pixmap.isNull());
 	QLabel *logo = new QLabel(centralWidget);
 	logo->setPixmap(pixmap);
@@ -35,13 +35,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 	QLabel *message = new QLabel("Working...", centralWidget);
 	message->setFont(font);
 	
-	QPushButton *settingsButton = new QPushButton("Settings", this);
+	QPushButton *settingsButton = new QPushButton("Settings", centralWidget);
 	
 	mainLayout->addWidget(logo);
 	mainLayout->addLayout(rightLayout);
 	rightLayout->addWidget(message);
 	rightLayout->addWidget(settingsButton);
-	this->setLayout(mainLayout);
+//	this->setLayout(mainLayout);
 	
 	timer = new QTimer(centralWidget);
 	timer->setInterval(1'500'000);
