@@ -13,7 +13,8 @@
 #include <QDialog>
 #include <QSpinBox>
 #include <QSettings>
-#include <qsettings.h>
+#include <qboxlayout.h>
+#include <QDebug>
 
 #include "settingsdialog.h"
 
@@ -23,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
 	working = new int;
 	resting = new int;
+	preResting = new int;
+	
 	loadSettings();
 	
 	alarmSound.setSource(QUrl::fromLocalFile(":/assets/chimes.wav"));
@@ -49,13 +52,20 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 	QLabel *message = new QLabel("Working...", centralWidget);
 	message->setFont(font);
 	
+	QHBoxLayout *buttonLayout = new QHBoxLayout(centralWidget);
+	
 	QPushButton *settingsButton = new QPushButton("Settings", centralWidget);
 	connect(settingsButton, &QPushButton::clicked, this, &MainWindow::showSettingsDialog);
-	
+
+	QPushButton *aboutButton = new QPushButton("About", centralWidget);
+
+		
 	mainLayout->addWidget(logo);
 	mainLayout->addLayout(rightLayout);
+	buttonLayout->addWidget(settingsButton);
+	buttonLayout->addWidget(aboutButton);
 	rightLayout->addWidget(message);
-	rightLayout->addWidget(settingsButton);
+	rightLayout->addLayout(buttonLayout);
 	
 	timer = new QTimer(centralWidget);
 	timer->setInterval(60000 * *working);
@@ -75,17 +85,17 @@ MainWindow::~MainWindow()
 {
 	delete working;
 	delete resting;	
+	delete preResting;
 }
 
 void MainWindow::showSettingsDialog()
 {
-	SettingsDialog dialog(working, resting, this);
+	SettingsDialog dialog(working, resting, preResting, this);
 	
 	if (dialog.exec() == QDialog::Accepted) {
 		loadSettings();
-
 		timer->stop();
-		timer->setInterval(timer->interval() == 60000 * *resting ? 60000 * *resting : 60000 * *working);
+		timer->setInterval(timer->interval() == 60000 * *preResting ? 60000 * *resting : 60000 * *working);
 		timer->start();
 
 	}
@@ -94,7 +104,6 @@ void MainWindow::showSettingsDialog()
 void MainWindow::loadSettings()
 {
 	QSettings settings("TheFifthContinent", "tomato");
-	
 	
 	settings.beginGroup("values");
 	*working = settings.value("working", 25).toInt();

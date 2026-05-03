@@ -12,7 +12,7 @@ class SettingsDialog : public QDialog {
 	Q_OBJECT
 
 public:
-	explicit SettingsDialog(int *working, int *resting, QWidget *parent = nullptr);
+	explicit SettingsDialog(int *working, int *resting, int *preResting, QWidget *parent = nullptr);
 	~SettingsDialog();
 
 private:
@@ -23,6 +23,7 @@ private:
 	
 	int *working;
 	int *resting;
+	int *preResting;
 	
 	void acceptDialog();
 	void saveSettings();

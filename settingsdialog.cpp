@@ -8,7 +8,8 @@
 #include <QPushButton>
 #include <QSettings>
 
-SettingsDialog::SettingsDialog(int *working, int *resting, QWidget *parent) : QDialog(parent), working {working}, resting {resting} 
+SettingsDialog::SettingsDialog(int *working, int *resting, int *preResting, QWidget *parent) : 
+								QDialog(parent), working {working}, resting {resting}, preResting {preResting} 
 {
 	setWindowTitle("Tomato: Settings");
 	
@@ -54,6 +55,7 @@ SettingsDialog::~SettingsDialog() { }
 
 void SettingsDialog::acceptDialog()
 {
+	*preResting = *resting;
 	*working = workingMinutes->value();
 	*resting = restingMinutes->value();
 	

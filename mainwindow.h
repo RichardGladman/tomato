@@ -13,13 +13,14 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
+	
+	int *working;
+	int *resting;
+	int *preResting;
 
 private:
 	QSoundEffect alarmSound;
 	QTimer *timer;
-	
-	int *working;
-	int *resting;
 	
 	void showSettingsDialog();
 	void loadSettings();
