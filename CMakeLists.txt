@@ -14,6 +14,7 @@ qt_add_executable(tomato
     mainwindow.h
     resources.qrc
     settingsdialog.h settingsdialog.cpp
+    aboutdialog.h aboutdialog.cpp
 )
 
 target_link_libraries(tomato
