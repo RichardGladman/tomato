@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSoundEffect>
+#include <QTimer>
+
 
 class MainWindow : public QMainWindow
 {
@@ -12,5 +15,7 @@ public:
     ~MainWindow() override;
 
 private:
+	QSoundEffect alarmSound;
+	QTimer *timer;
 };
 #endif // MAINWINDOW_H
