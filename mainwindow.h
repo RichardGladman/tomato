@@ -23,6 +23,7 @@ private:
 	QTimer *timer;
 	
 	void showSettingsDialog();
+	void showAboutDialog();
 	void loadSettings();
 };
 #endif // MAINWINDOW_H

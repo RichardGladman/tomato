@@ -13,10 +13,10 @@
 #include <QDialog>
 #include <QSpinBox>
 #include <QSettings>
-#include <qboxlayout.h>
 #include <QDebug>
 
 #include "settingsdialog.h"
+#include "aboutdialog.h"
 
 void showSettingsDialog();
 
@@ -58,6 +58,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 	connect(settingsButton, &QPushButton::clicked, this, &MainWindow::showSettingsDialog);
 
 	QPushButton *aboutButton = new QPushButton("About", centralWidget);
+	connect(aboutButton, &QPushButton::clicked, this, &MainWindow::showAboutDialog);
 
 		
 	mainLayout->addWidget(logo);
@@ -99,6 +100,12 @@ void MainWindow::showSettingsDialog()
 		timer->start();
 
 	}
+}
+
+void MainWindow::showAboutDialog()
+{
+	AboutDialog dialog(this);
+	dialog.exec();
 }
 
 void MainWindow::loadSettings()
