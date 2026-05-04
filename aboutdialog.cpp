@@ -29,6 +29,9 @@ AboutDialog::AboutDialog(QWidget *parent) : QDialog(parent)
 	copyrightLabel->setText("© 2026 Richard Gladman");
 	rightLayout->addWidget(copyrightLabel);
 	
+	QLabel *licenceLabel = new QLabel("Licensed under the GPLv3", this);
+	rightLayout->addWidget(licenceLabel);
+	
 	QLabel *descriptionLabel = new QLabel(this);
 	descriptionLabel->setText("A basic and configurable work / rest balance clock");
 	rightLayout->addWidget(descriptionLabel);
