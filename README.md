@@ -9,7 +9,7 @@ First, you'll need to install [the qt framework](https://www.qt.io/development/d
 Run the following commands:
 
 ```
-git clone https://github.com/RichardGladman/project-timer.git
+git clone https://github.com/RichardGladman/tomato.git
 cd ansicodes
 mkdir build
 cd build
